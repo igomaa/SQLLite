@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     //reference to button abd controls on the layout
     Button btn_add, btn_viewAll;
@@ -37,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 CustomerModel customerModel;
 
                 try{
@@ -59,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btn_viewAll.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+               DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                List<CustomerModel> everyone = dataBaseHelper.getEveryOne();
 
-                Toast.makeText(MainActivity.this, "View ALL", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, everyone.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
